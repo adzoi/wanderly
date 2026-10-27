@@ -1,0 +1,19 @@
+{
+  "name": "wanderly",
+  "version": "1.0.0",
+  "description": "Marketplace for tourism services",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --experimental-sqlite --no-warnings server.js",
+    "dev": "node --experimental-sqlite --no-warnings --watch server.js",
+    "seed": "node --experimental-sqlite --no-warnings seed.js",
+    "reseed": "node --experimental-sqlite --no-warnings seed.js --reset"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemailer": "^10.2.1"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  }
+}
