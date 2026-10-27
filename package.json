@@ -4,7 +4,7 @@
   "description": "Marketplace for tourism services",
   "main": "server.js",
   "scripts": {
-    "start": "node --experimental-sqlite --no-warnings server.js",
+    "start": "node --experimental-sqlite --no-warnings seed.js && node --experimental-sqlite --no-warnings server.js",
     "dev": "node --experimental-sqlite --no-warnings --watch server.js",
     "seed": "node --experimental-sqlite --no-warnings seed.js",
     "reseed": "node --experimental-sqlite --no-warnings seed.js --reset"
