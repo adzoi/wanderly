@@ -23,8 +23,8 @@ async function browse(favoritesOnly = false) {
   const sorts = [['newest', t('sort.newest')], ['rating', t('sort.rating')], ['price_asc', t('sort.priceAsc')], ['price_desc', t('sort.priceDesc')]];
   if (near) sorts.unshift(['distance', t('sort.distance')]);
   app.innerHTML = `
-    ${favoritesOnly ? `<h1>${t('saved.title')}</h1>` : `<section class="hero"><h1>${t('hero.title')}</h1><p>${t('hero.sub')}</p>
-      <form class="search" id="sf"><input id="q" placeholder="${t('search.ph')}" value="${esc(filters.q)}"><button class="btn accent">${t('search.btn')}</button></form></section>`}
+    ${favoritesOnly ? `<h1>${t('saved.title')}</h1>` : `<section class="hero"><div class="hero-in"><div class="hero-copy"><h1>${t('hero.title')}</h1><p>${t('hero.sub')}</p>
+      <form class="search" id="sf"><input id="q" placeholder="${t('search.ph')}" value="${esc(filters.q)}"><button class="btn accent">${t('search.btn')}</button></form></div><div id="hmap"></div></div></section>`}
     <div class="chips" id="chips"></div>
     <div class="filters">
       <div><label>${t('city')}</label><select id="city"><option value="">${t('anywhere')}</option>${state.meta.cities.map((c) => `<option ${c === filters.city ? 'selected' : ''}>${esc(c)}</option>`).join('')}</select></div>
@@ -82,6 +82,16 @@ async function browse(favoritesOnly = false) {
       $('#area').hidden = true;
     }
   }
+
+  if ($('#hmap')) api('/listings?cur=' + displayCur()).then(({ listings }) => {
+    const h = $('#hmap'); if (!h) return;
+    h.innerHTML = heroMap(listings, null);
+    h.onclick = (e) => {
+      const b = e.target.closest('.pin'); if (!b) return;
+      filters.city = b.dataset.city; const sel = $('#city'); if (sel) sel.value = filters.city;
+      load(); $('#chips').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+  }).catch(() => {});
 
   async function load() {
     const p = new URLSearchParams(Object.entries(filters).filter(([k, v]) => v && k !== 'view'));
