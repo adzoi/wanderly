@@ -30,11 +30,11 @@ function heroMap(listings, pick) {
     for (const p of pins) { p.x = Math.min(VW - p.d / 2, Math.max(p.d / 2, p.x)); p.y = Math.min(VH - p.d / 2, Math.max(p.d / 2, p.y)); }
   }
   return `<div class="hero-map" aria-label="Georgia"><svg viewBox="0 0 ${VW} ${VH}" role="img">
-    <defs><linearGradient id="gf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9dc3a7"/><stop offset="1" stop-color="#5f9a7f"/></linearGradient></defs>
-    <g transform="translate(20 20)"><path d="${GEO.path}" transform="translate(5 12)" fill="#2f5d4c" opacity=".35"/>
-    <path d="${GEO.path}" transform="translate(3 7)" fill="#2f5d4c"/>
-    <path d="${GEO.path}" fill="url(#gf)" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></g>
-    ${pins.map((p) => `<line x1="${p.ax}" y1="${p.ay}" x2="${p.x}" y2="${p.y}" stroke="#fff" stroke-width="2"/><circle cx="${p.ax}" cy="${p.ay}" r="4.5" fill="#d9622b" stroke="#fff" stroke-width="2"/>`).join('')}</svg>
+    <defs><linearGradient id="gf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#d6ebff"/></linearGradient></defs>
+    <g transform="translate(20 20)"><path d="${GEO.path}" transform="translate(5 12)" fill="#004a99" opacity=".35"/>
+    <path d="${GEO.path}" transform="translate(3 7)" fill="#006acc"/>
+    <path d="${GEO.path}" fill="url(#gf)" stroke="#8cc8ff" stroke-width="1.4" stroke-linejoin="round"/></g>
+    ${pins.map((p) => `<line x1="${p.ax}" y1="${p.ay}" x2="${p.x}" y2="${p.y}" stroke="#fff" stroke-width="2"/><circle cx="${p.ax}" cy="${p.ay}" r="4.5" fill="#f7ce50" stroke="#fff" stroke-width="2"/>`).join('')}</svg>
     ${pins.map((p) => `<button type="button" class="pin ${p === big ? 'lg' : ''}" data-city="${esc(p.city)}" style="left:${p.x / VW * 100}%;top:${p.y / VH * 100}%;width:${p.d / VW * 100}%" title="${esc(p.city)}">
       <span class="pin-img" ${p.img ? `style="background-image:url('${p.img}')"` : ''}>${p.img ? '' : '📍'}</span><span class="pin-label">${esc(p.city)}</span></button>`).join('')}</div>`;
 }

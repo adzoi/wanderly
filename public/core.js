@@ -54,7 +54,7 @@ function badges(l) {
 
 function bg(l) {
   if (l.image) return `style="background-image:url('${esc(l.image)}')"`;
-  const P = [['#1f4d3f', '#4f8a72'], ['#d9622b', '#f0a35e'], ['#2f5d7c', '#7fb0c9'], ['#8a5a3c', '#d8b48a'], ['#5b4a7a', '#a99ac9'], ['#3f6b4a', '#b7cf8f']];
+  const P = [['#0088ff', '#6cc0ff'], ['#006acc', '#4da6ff'], ['#1b6fd1', '#8ccaff'], ['#0a5bb5', '#5fb4ff'], ['#2a7de1', '#a6d6ff'], ['#0077e6', '#7bc4ff']];
   const c = P[[...String(l.category || l.id || '')].reduce((a, ch) => a + ch.charCodeAt(0), 0) % P.length];
   return `style="background:linear-gradient(145deg,${c[0]},${c[1]})"`;
 }

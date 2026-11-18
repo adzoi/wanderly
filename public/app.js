@@ -23,7 +23,7 @@ async function browse(favoritesOnly = false) {
   const sorts = [['newest', t('sort.newest')], ['rating', t('sort.rating')], ['price_asc', t('sort.priceAsc')], ['price_desc', t('sort.priceDesc')]];
   if (near) sorts.unshift(['distance', t('sort.distance')]);
   app.innerHTML = `
-    ${favoritesOnly ? `<h1>${t('saved.title')}</h1>` : `<section class="hero"><div class="hero-in"><div class="hero-copy"><h1>${t('hero.title')}</h1><p>${t('hero.sub')}</p>
+    ${favoritesOnly ? `<h1>${t('saved.title')}</h1>` : `<section class="hero"><div class="hero-in"><div class="hero-copy"><div class="hero-brand">Wanderly</div><h1>${t('hero.title')}</h1><p>${t('hero.sub')}</p>
       <form class="search" id="sf"><input id="q" placeholder="${t('search.ph')}" value="${esc(filters.q)}"><button class="btn accent">${t('search.btn')}</button></form></div><div id="hmap"></div></div></section>`}
     <div class="chips" id="chips"></div>
     <div class="filters">
